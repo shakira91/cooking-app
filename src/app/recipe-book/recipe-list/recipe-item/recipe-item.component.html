@@ -1,0 +1,13 @@
+<div class="row">
+	<div class="col-xs-7">
+		<a href="#" class="list-group-item clearfix" (click)="recipeClicked()">
+			<div class="pull-left">
+				<h4 class="list-group-item-heading"> {{ recipes.name }}</h4>
+				<p class="list-group-item-text">{{ recipes.description }}</p>
+			</div>
+			<span class="pull-right">
+				<img [src]="recipes.imagePath" alt="" style="width:200px;" class="img-responsive"/>
+			</span>
+		</a>
+	</div>
+</div>
