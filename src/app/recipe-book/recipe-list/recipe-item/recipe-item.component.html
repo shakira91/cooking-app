@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-xs-7">
-		<a  class="list-group-item clearfix" (click)="recipeClicked()">
+		<a [routerLink]="[index]" routerLinkActive="active" class="list-group-item clearfix">
 			<div class="pull-left">
 				<h4 class="list-group-item-heading"> {{ recipes.name }}</h4>
 				<p class="list-group-item-text">{{ recipes.description }}</p>
