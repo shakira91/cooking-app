@@ -1,13 +1,8 @@
-<app-header (navItemSelected)="onNavigate($event)"></app-header>
+<app-header></app-header>
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<app-recipe-book *ngIf=" chosenNavItem === 'Recipes'"></app-recipe-book>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<app-shopping-list *ngIf=" chosenNavItem === 'Shopping-List'"></app-shopping-list>
+			<router-outlet></router-outlet>
 		</div>
 	</div>
 </div>

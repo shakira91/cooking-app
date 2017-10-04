@@ -5,15 +5,16 @@
 		</div>
 		<div class="navbar-default">
 			<ul class="nav navbar-nav">
-				<li><a (click)="navigationItemClicked('Recipes')" href="#">Recipes</a></li>
-				<li><a (click)="navigationItemClicked('Shopping-List')" href="#">Shopping List</a></li>
+
+				<li><a routerLink="/recipes" routerLinkActive="active">Recipes</a></li>
+				<li><a routerLink="/shopping-list" routerLinkActive="active">Shopping List</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown" addDropdown>
 					<a href="/" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="">Save Data</a></li>
-						<li><a href="">Fetch Data</a></li>
+						<li><a >Save Data</a></li>
+						<li><a >Fetch Data</a></li>
 					</ul>
 				</li>
 			</ul>
