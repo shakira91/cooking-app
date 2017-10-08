@@ -18,10 +18,10 @@ export class ShoppingListComponent implements OnInit, OnDestroy{
   // @ViewChild('shoppingListAmount') amountInputRef: ElementRef;
   // @ViewChild('shoppingListName') nameInputRef: ElementRef;
 
-  constructor(private ShopppingListService: ShopppingListService,) { }
-
-  onAddItemToShoppingLst(amount, name){
-    this.ShopppingListService.add(amount.value, name.value);
+ constructor(private ShopppingListService: ShopppingListService) { }
+  
+  editItem(index: number) {
+    this.ShopppingListService.startedEditing.next(index);
   }
 
   ngOnInit() {
