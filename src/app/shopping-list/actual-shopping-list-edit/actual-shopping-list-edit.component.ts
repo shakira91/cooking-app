@@ -19,6 +19,7 @@ export class ActualShoppingListEditComponent implements OnInit, OnDestroy{
   subscription: Subscription;
   editMode: boolean = false;
   editedItemIndex: number;
+  editedIngredient: Ingredient;
 
   constructor(private ShopppingListService: ShopppingListService) {
   }
@@ -31,8 +32,13 @@ export class ActualShoppingListEditComponent implements OnInit, OnDestroy{
 
     this.subscription = this.ShopppingListService.startedEditing.subscribe(
         (index: number) => {
-          index = this.editedItemIndex;
+          this.editedItemIndex = index;
           this.editMode = true;
+          this.editedIngredient = this.ShopppingListService.getIngredient(index);
+          this.ingredientsForm.setValue({
+            name: this.editedIngredient.name,
+            amount: this.editedIngredient.amount
+          })
         }
       );
   }
@@ -44,10 +50,27 @@ export class ActualShoppingListEditComponent implements OnInit, OnDestroy{
   	} 
   }
 
-  onAddItemToShoppingList(){
-    this.ShopppingListService.add(this.ingredientsForm.value.amount, this.ingredientsForm.value.name);
-    console.log(this.ingredientsForm)
- }
+  onItemSubmit() {
+    const updated = new Ingredient(this.ingredientsForm.value.amount, this.ingredientsForm.value.name);
+
+    if (this.editMode) {
+      this.ShopppingListService.updateIngredient(this.editedItemIndex, updated);
+    } else {
+      this.ShopppingListService.add(this.ingredientsForm.value.amount, this.ingredientsForm.value.name);
+    }
+    this.editMode = false;
+    this.ingredientsForm.reset();
+  }
+
+  clearForm() {
+    this.editMode = false;
+    this.ingredientsForm.reset()
+  }
+
+  deleteIngredient() {
+    this.clearForm();
+    this.ShopppingListService.remove(this.editedItemIndex);
+  }
 
  ngOnDestroy() {
    this.subscription.unsubscribe();

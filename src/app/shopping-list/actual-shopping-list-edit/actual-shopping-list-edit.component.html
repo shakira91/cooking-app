@@ -1,5 +1,5 @@
 <form [formGroup]="ingredientsForm" 
-(ngSubmit)="onAddItemToShoppingList()"> 
+(ngSubmit)="onItemSubmit()"> 
 	<div class="row">
 		<div class="col-sm-5 form-group">
 			<label for="name">Name</label>
@@ -12,9 +12,9 @@
 	</div>
 	<div class="row">
 		<div class="col-lg-12">
-			<button class="btn btn-success" type="submit" [disabled]="!ingredientsForm.valid">Add</button>
-			<button class="btn btn-danger" type="button">Delete</button>
-			<button class="btn btn-danger" type="button">Clear</button>
+			<button class="btn btn-success" type="submit" [disabled]="!ingredientsForm.valid">{{ editMode ? 'Update' : 'Add'}}</button>
+			<button *ngIf="editMode" class="btn btn-danger" type="button" (click)="deleteIngredient()">Delete</button>
+			<button class="btn btn-danger" type="button" (click)="clearForm()">Clear</button>
 		</div>
 	</div>
 </form>

@@ -14,10 +14,26 @@ export class ShopppingListService {
   get() {
     return this.ingredients.slice();
   }
+
+  getIngredient(index: number) {
+    return this.ingredients[index];
+  }
+
+  remove(index: number) {
+    this.ingredients.splice(index, 1);
+    this.ingredientsChanged.next(this.ingredients.slice());
+  }
+
+  updateIngredient(index: number, updated: Ingredient) {
+    this.ingredients[index] = updated;
+    this.ingredientsChanged.next(this.ingredients.slice());
+  }
+
   add(amount, name) {
     this.ingredients.push(new Ingredient(amount, name));
     this.ingredientsChanged.next(this.get());
   }
+
   addFromRecipes(ingredients: Ingredient[]) {
     this.ingredients.push(...ingredients);
     this.ingredientsChanged.next(this.get());
